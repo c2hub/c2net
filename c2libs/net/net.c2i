@@ -1,0 +1,31 @@
+module net;
+
+type netaddress struct
+{
+    uint32 host;
+    uint16 port;
+}
+
+type netsocket struct
+{
+    int32 handle;
+    bool non_blocking;
+    int32 ready;
+}
+
+func void netshutdown();
+func int32 init();
+
+func void socket_close(netsocket* socket);
+func char* host_to_str(int32 host);
+func const char* get_error();
+func int32 get_address(netaddress* address, const char* host, uint16 port);
+func int32 udp_socket_open(netsocket* socket, int32 port, bool non_blocking);
+func int32 udp_socket_send(netsocket* socket, netaddress destination, const void* data, int32 size);
+func int32 udp_socket_receive(netsocket* socket, netaddress* sender, void* data, int32 size);
+func int32 tcp_socket_open(netsocket* socket, uint32 port, int32 non_blocking, int32 listen_socket);
+func int32 tcp_connect(netsocket* socket, netadddress remote_addr);
+func int32 tcp_accept(netsocket* remote_socket, void* data, int32 size);
+func int32 tcp_socket_send(netsocket* remote_socket, const void* data, int32 size);
+func int32 tcp_socket_receive(netsocket* remote_socket, void* data, int32 size);
+func int32 tcp_make_socket_ready(netsocket* socket);

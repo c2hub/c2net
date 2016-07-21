@@ -1,0 +1,8 @@
+# Example for suggestion no. 4
+
+[library]
+language = "C"
+
+[[modules]]
+name = "net"
+header = "c2net.h"
